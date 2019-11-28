@@ -43,17 +43,24 @@ class GameScene extends Phaser.Scene {
     //create the general ennemies
     this.ennemies = new Ennemi("ennemiShip",this);
     //adding an enemi
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(null,null,this)
-    this.ennemies.createEnemies(300,300,this)
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
+    this.ennemies.createEnemies(null,null,this);
 
   }
 
   update() {
     this.player.move();
+
+    // every update, for every child, we try to get the player
+    this.ennemies.ennemies.children.iterate((child)=>{
+      // if the player is at our right, we move right, if the player is at left, we turn left.
+      this.ennemies.trackPlayer(child, this);
+    })
+
   }
 }
