@@ -30,6 +30,17 @@ class Player {
       `angle : ${this.player.angle - 90}`
     );
     this.displayRotation.setScrollFactor(0); // this line said that the text will not scroll and will be fixed on the screen
+    
+    //creating and display point
+    
+    this.player.point = 0;
+
+    this.displayPoint = gameObj.add.text(
+      700,
+      16,
+      `${this.player.point}`
+    );
+    this.displayPoint.setScrollFactor(0); // this line said that the text will not scroll and will be fixed on the screen
 
     if (true) {
       // define the key player key
