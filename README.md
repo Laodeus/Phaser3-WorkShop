@@ -95,9 +95,75 @@ No, seriously, has he said, about every 3.56 second, object oriented programming
 
 so, every part of this little workshop will be classy.
 
+###Where and what 
+
+As you can see, there is 3 predifined func.
+
+1. preload()
+        *preload is the func where you will preset your object
+        *load your images
+2. create()
+        *here you will create your object 
+        *display it
+        *define your key
+        *...
+3. update()
+        *here, you will make your interaction
+        *calculate your physics
+        *etc...
+
 ###Scene Change. 
 
 the first thing that you have to do is get out of your landing scene.
+
+but... if nothing is displayed on your landing scene and nothing is displayed on your menu... you will se no difference between the two scenes... 
+
+what about a background image? 
+
+like [this one](./asset/background.jpg)?
+what if i say to you that you can repeat and make this image move? 
+
+let's get code!
+
+<details>
+ <summary>more details here</summary>
+
+```javascript
+preload (){
+        this.width =  this.sys.game.canvas.width
+        this.height =  this.sys.game.canvas.height;
+        this.load.image("Bg",`./asset/SpaceBackGround.jpg`);
+
+    }
+
+    create (){
+        this.background = this.add.tileSprite(400,300,800,600,"Bg").setDisplaySize(this.width, this.height);
+        this.movingBackground = this.add.tileSprite(400, 300, 800, 600, "Bg");
+        this.movingBackground.alpha = 0.5;
+
+
+        this.add.text(320,280,"Landing").setColor("rgba(255,255,255,1)").setBackgroundColor("rgba(0,0,0,0.4)");
+        this.add.text(320,300,"Press Enter",).setColor("rgba(255,255,255,1)").setBackgroundColor("rgba(0,0,0,0.4)");
+
+        this.input.keyboard.on("keyup",(evt)=>{
+            console.log(evt.code);
+            if(evt.code == "Enter"){
+                this.scene.start("MenuScene");
+            }
+        });
+    }
+
+    update(){
+        this.movingBackground.tilePositionX += 0.1;
+        this.movingBackground.tilePositionY += 0.1;
+        
+        this.background.tilePositionX += 0.3;
+        this.background.tilePositionY += 0.3;
+    }
+
+}
+```
+</details>
 
 
 
