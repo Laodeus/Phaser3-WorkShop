@@ -114,4 +114,7 @@ class Player {
     this.player.angle += 6;
     this.displayRotation.setText(`angle : ${this.player.angle.toFixed(0)}`);
   }
+  redisplayPoint(){
+    this.displayPoint.setText(`${this.player.point}`);
+  }
 }

@@ -6,15 +6,19 @@ class Ennemi {
     //create the collider
     gameObj.physics.add.collider(
       gameObj.player.player, // attention au nom recursif
-      this.ennemies
+      this.ennemies,
+      this.hitingEnnemi,
+      null,
+      this,
     );
 
-    gameObj.physics.add.collider(this.ennemies, this.ennemies);
+    gameObj.physics.add.collider(this.ennemies, this.ennemies,this.ennemiColide, null, this);
 
     this.sprite = sprite;
+    this.gameObj = gameObj;
   }
 
-  createEnemies(x, y, gameObj) {
+  createEnemies(x, y) {
     //if X or Y is not assigned, it's random
     x = x || Phaser.Math.Between(0, 2000);
     y = y || Phaser.Math.Between(0, 600);
@@ -42,6 +46,28 @@ class Ennemi {
     enemiObj.angle += 6;
   }
 
+  hitingEnnemi(player,ennemi){
+    player.disableBody(true, true);
+    ennemi.disableBody(true, true);
+    this.gameObj.add.text(300,300,"Game Over").setScrollFactor(3);
+
+  }
+
+  ennemiColide(ennemi1,ennemi2){
+    ennemi1.disableBody(true, true);
+    ennemi2.disableBody(true, true);
+
+    console.log(this)
+    this.gameObj.player.player.point += 20;
+    this.gameObj.player.redisplayPoint();
+
+    this.createEnemies();
+    this.createEnemies();
+
+
+
+  }
+
   trackPlayer(enemiObj, gameObj) {
     // obj property simplification for dev
     const player = {
@@ -52,7 +78,7 @@ class Ennemi {
     const ennemi = { x: enemiObj.x, y: enemiObj.y, angle: enemiObj.angle };
 
     // acceleration
-    if (enemiObj.vel < 400) enemiObj.vel += 3;
+    if (enemiObj.vel < 200) enemiObj.vel += 3;
 
     // this is where enemiObj ennemis chose to go to left or right
         // how many degrees from enemis? 
