@@ -1,62 +1,48 @@
-class Player {
-  constructor(x, y, sprite, gameObj) {
-    //PLAYER
-    this.player = gameObj.physics.add.sprite(x, y, sprite);
+class Player extends Phaser.Physics.Arcade.Sprite {
+  constructor(scene, x, y) {
+    super(scene, x, y, "playerShip");
+    // display player 
+    scene.sys.displayList.add(this);
+    //??? this make potatoes
+    scene.sys.updateList.add(this);
+    //this activate the physics
+    scene.sys.arcadePhysics.world.enableBody(this, 0);
 
     //the player won't go out of the world
-    this.player.setCollideWorldBounds(true);
-
+    this.setCollideWorldBounds(true);
     // get the player in the correct position (thank to the sprite.)
-    this.player.angle = 90;
+    this.angle = 90;
 
     //define the player velocity that will be used by setVelocity
     this.vel = 0;
 
     //CAMERA
     // making the camera following the player
-    gameObj.cameras.main.startFollow(this.player);
+    scene.cameras.main.startFollow(this);
 
     //making sure that the camera will not get out of the world
-    gameObj.cameras.main.setBounds(0, 0, gameObj.gameWidth, gameObj.gameHeight);
+    scene.cameras.main.setBounds(0, 0, scene.gameWidth, scene.gameHeight);
 
     //UI PART
     // speed display fixed to camera
-    this.displaySpeed = gameObj.add.text(16, 16, `speed : ${this.vel}`);
+    this.displaySpeed = scene.add.text(16, 16, `speed : ${this.vel}`);
     this.displaySpeed.setScrollFactor(0); // this line said that the text will not scroll and will be fixed on the screen
 
-    this.displayRotation = gameObj.add.text(
-      16,
-      64,
-      `angle : ${this.player.angle - 90}`
-    );
+    this.displayRotation = scene.add.text(16, 64, `angle : ${this.angle - 90}`);
     this.displayRotation.setScrollFactor(0); // this line said that the text will not scroll and will be fixed on the screen
-    
-    //creating and display point
-    
-    this.player.point = 0;
 
-    this.displayPoint = gameObj.add.text(
-      700,
-      16,
-      `${this.player.point}`
-    );
+    //creating and display point
+
+    this.point = 0;
+
+    this.displayPoint = scene.add.text(700, 16, `${this.point}`);
     this.displayPoint.setScrollFactor(0); // this line said that the text will not scroll and will be fixed on the screen
 
-    if (true) {
-      // define the key player key
-      this.keyZ = gameObj.input.keyboard.addKey(
-        Phaser.Input.Keyboard.KeyCodes.Z
-      );
-      this.keyQ = gameObj.input.keyboard.addKey(
-        Phaser.Input.Keyboard.KeyCodes.Q
-      );
-      this.keyS = gameObj.input.keyboard.addKey(
-        Phaser.Input.Keyboard.KeyCodes.S
-      );
-      this.keyD = gameObj.input.keyboard.addKey(
-        Phaser.Input.Keyboard.KeyCodes.D
-      );
-    }
+    // define the key player key
+    this.keyZ = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    this.keyQ = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+    this.keyS = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
   }
 
   move() {
@@ -73,15 +59,14 @@ class Player {
       this.turnRight();
     }
   }
-
   accelerate() {
     if (this.vel < 400) {
       this.vel += 3;
     } else {
     }
-    this.player.setVelocity(
-      Math.sin(this.player.rotation) * this.vel,
-      Math.cos(this.player.rotation) * -this.vel
+    this.setVelocity(
+      Math.sin(this.rotation) * this.vel,
+      Math.cos(this.rotation) * -this.vel
     ); // 1
     this.displaySpeed.setText(`speed : ${this.vel}`);
   }
@@ -90,31 +75,31 @@ class Player {
     if (this.vel > 0) {
       this.vel -= 3;
     }
-    this.player.setVelocity(
-      Math.sin(this.player.rotation) * this.vel,
-      Math.cos(this.player.rotation) * -this.vel
+    this.setVelocity(
+      Math.sin(this.rotation) * this.vel,
+      Math.cos(this.rotation) * -this.vel
     );
     this.displaySpeed.setText(`speed : ${this.vel}`);
   }
 
   turnLeft() {
-    this.player.setVelocity(
-      Math.sin(this.player.rotation) * this.vel,
-      Math.cos(this.player.rotation) * -this.vel
+    this.setVelocity(
+      Math.sin(this.rotation) * this.vel,
+      Math.cos(this.rotation) * -this.vel
     );
-    this.player.angle -= 6;
-    this.displayRotation.setText(`angle : ${this.player.angle.toFixed(0)}`);
+    this.angle -= 6;
+    this.displayRotation.setText(`angle : ${this.angle.toFixed(0)}`);
   }
 
   turnRight() {
-    this.player.setVelocity(
-      Math.sin(this.player.rotation) * this.vel,
-      Math.cos(this.player.rotation) * -this.vel
+    this.setVelocity(
+      Math.sin(this.rotation) * this.vel,
+      Math.cos(this.rotation) * -this.vel
     );
-    this.player.angle += 6;
-    this.displayRotation.setText(`angle : ${this.player.angle.toFixed(0)}`);
+    this.angle += 6;
+    this.displayRotation.setText(`angle : ${this.angle.toFixed(0)}`);
   }
-  redisplayPoint(){
-    this.displayPoint.setText(`${this.player.point}`);
+  redisplayPoint() {
+    this.displayPoint.setText(`${this.point}`);
   }
 }

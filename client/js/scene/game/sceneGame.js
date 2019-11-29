@@ -38,7 +38,7 @@ class GameScene extends Phaser.Scene {
       .setScrollFactor(3);
 
     // create the player
-    this.player = new Player(300, 300, "playerShip", this);
+    this.player = new Player(this,300, 300);
 
     //create the general ennemies
     this.ennemies = new Ennemi("ennemiShip",this);
