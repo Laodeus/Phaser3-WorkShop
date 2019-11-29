@@ -3,14 +3,6 @@ class IndustryEnnemi {
     //creating enemies groups
     this.ennemies = gameObj.physics.add.group();
 
-    gameObj.physics.add.collider(
-      this.ennemies,
-      this.ennemies,
-      this.ennemiColide,
-      null,
-      this
-    );
-
     this.sprite = sprite;
     this.gameObj = gameObj;
   }
