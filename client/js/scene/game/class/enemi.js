@@ -24,15 +24,38 @@ class Ennemi {
     this.gameObj = gameObj;
   }
 
-  createEnemies(x, y) {
+  createEnemies() {
     //if X or Y is not assigned, it's random
-    x = x || Phaser.Math.Between(0, 2000);
-    y = y || Phaser.Math.Between(0, 600);
+    const bord = Phaser.Math.Between(0, 3);
+    let x,y,rot;
+    switch(bord)
+    {
+      case 0:
+          x = 20;
+          y = Phaser.Math.Between(20, 580);
+          rot = 0;
+        break;
+      case 1:
+          x = 1980;
+          y = Phaser.Math.Between(20, 580);
+          rot = 180;
+        break;
+      case 2:
+          x = x || Phaser.Math.Between(20, 780);
+          y = 20;
+          rot = 90;
+        break;
+      case 3:
+          x = x || Phaser.Math.Between(20, 780);
+          y = 580;
+          rot = 90;
+        break;
+    }
 
     //adding to the group
     const ennemi = this.ennemies.create(x, y, this.sprite);
     ennemi.setCollideWorldBounds(true);
-    ennemi.angle = 225;
+    ennemi.angle = rot;
     ennemi.vel = 0;
   }
 
@@ -73,6 +96,7 @@ class Ennemi {
     this.gameObj.player.player.point += 20;
     this.gameObj.player.redisplayPoint();
 
+    this.createEnemies();
     this.createEnemies();
     this.createEnemies();
   }

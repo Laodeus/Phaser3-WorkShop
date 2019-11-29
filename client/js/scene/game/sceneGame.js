@@ -1,7 +1,7 @@
 class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: "GameScene" });
-    this.gameWidth = 2000;
+    this.gameWidth = 800;
     this.gameHeight = 600;
   }
 
