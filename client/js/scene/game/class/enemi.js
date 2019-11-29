@@ -50,6 +50,7 @@ class Ennemi {
     player.disableBody(true, true);
     ennemi.disableBody(true, true);
     this.gameObj.add.text(300,300,"Game Over").setScrollFactor(3);
+    this.gameObj.scene.pause()
 
   }
 
