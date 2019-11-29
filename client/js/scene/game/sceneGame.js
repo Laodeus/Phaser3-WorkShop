@@ -41,21 +41,10 @@ class GameScene extends Phaser.Scene {
     this.ennemy.setVelocity(-100, 0);
 
     this.physics.add.collider(this.player, this.ennemy);
-
-    // define the key player key
-    this.keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
-    this.keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
   }
 
   update() {
-    if (this.keyQ.isDown) {
-      this.player.turnLeft();
-    }
-    if (this.keyD.isDown) {
-      this.player.turnRight();
-    }
+    this.player.move();
     this.moveBg();
     if (this.ennemy.x < -32) {
       this.ennemy.setVelocity(0, 0);
