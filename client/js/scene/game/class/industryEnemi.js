@@ -3,15 +3,6 @@ class IndustryEnnemi {
     //creating enemies groups
     this.ennemies = gameObj.physics.add.group();
 
-    //create the collider
-    gameObj.physics.add.collider(
-      gameObj.player, // attention au nom recursif
-      this.ennemies,
-      this.hitingEnnemi,
-      null,
-      this
-    );
-
     gameObj.physics.add.collider(
       this.ennemies,
       this.ennemies,

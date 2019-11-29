@@ -65,7 +65,6 @@ class GameScene extends Phaser.Scene {
   }
 
   hitingEnnemi(player, ennemi) {
-    console.log("game over");
     player.disableBody(true, true);
     ennemi.disableBody(true, true);
     this.add.text(300, 300, "Game Over").setScrollFactor(3);
