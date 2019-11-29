@@ -38,23 +38,37 @@ class GameScene extends Phaser.Scene {
       .setScrollFactor(3);
 
     // create the player
-    this.player = new Player(this,300, 300);
+    this.player = new Player(this, 300, 300);
 
     //create the general ennemies
-    this.ennemies = new Ennemi("ennemiShip",this);
+    this.industryEnnemi = new IndustryEnnemi("ennemiShip", this);
     //adding an enemi
-    this.ennemies.createEnemies(null,null,this);
-    this.ennemies.createEnemies(null,null,this);
+    this.industryEnnemi.createEnemies(this.player, this);
+    this.industryEnnemi.createEnemies(this.player, this);
+
+    this.physics.add.collider(
+      this.player, // attention au nom recursif
+      this.industryEnnemi.ennemies,
+      this.hitingEnnemi,
+      null,
+      this
+    );
   }
 
   update() {
     this.player.move();
-
     // every update, for every child, we try to get the player
-    this.ennemies.ennemies.children.iterate((child)=>{
+    this.industryEnnemi.ennemies.children.iterate(child => {
       // if the player is at our right, we move right, if the player is at left, we turn left.
-      this.ennemies.trackPlayer(child, this);
-    })
+      child.trackPlayer(this.player);
+    });
+  }
 
+  hitingEnnemi(player, ennemi) {
+    console.log("game over");
+    player.disableBody(true, true);
+    ennemi.disableBody(true, true);
+    this.add.text(300, 300, "Game Over").setScrollFactor(3);
+    this.scene.pause();
   }
 }
