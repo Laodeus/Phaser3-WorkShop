@@ -15,8 +15,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     //destroy
 
     this.setVelocity(
-      Math.sin(this.rotation) * this.vel,
-      Math.cos(this.rotation) * -this.vel
+      Math.sin(this.rotation) * 600,
+      Math.cos(this.rotation) * -600
     );
   }
 }

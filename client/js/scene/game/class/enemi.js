@@ -49,7 +49,7 @@ class Enemi extends Phaser.Physics.Arcade.Sprite {
     };
 
     // acceleration
-    if (this.vel < 300) this.vel += 3;
+    if (this.vel < 150) this.vel += 3;
 
     // this is where enemiObj ennemis chose to go to left or right
 

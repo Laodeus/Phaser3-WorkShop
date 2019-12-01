@@ -2,6 +2,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, "playerShip");
     this.scene = scene;
+    console.log(this.scene)
     // display player
     scene.sys.displayList.add(this);
     //??? this make potatoes
@@ -45,6 +46,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.keyS = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyE = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    this.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
   }
 
   move() {
@@ -62,6 +64,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
     if (this.keyE.isDown) {
       this.shoot();
+    }
+    if (this.keyA.isDown) {
+      this.scene.restartScene();
     }
   }
   accelerate() {
@@ -104,6 +109,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.angle += 6;
     this.displayRotation.setText(`angle : ${this.angle.toFixed(0)}`);
   }
+  
   redisplayPoint() {
     this.displayPoint.setText(`${this.point}`);
   }

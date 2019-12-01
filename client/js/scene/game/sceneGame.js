@@ -95,4 +95,11 @@ class GameScene extends Phaser.Scene {
     this.industryEnnemi.createEnemies(this.player);
     this.industryEnnemi.createEnemies(this.player);
   }
+
+  restartScene(){
+    console.log("Restart the scene.")
+    this.scene.restart();
+  }
 }
+
+
