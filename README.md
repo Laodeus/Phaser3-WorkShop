@@ -82,6 +82,9 @@ class LandingScene extends Phaser.Scene{
 ``` 
 </details>
 
+![do it!](https://media3.giphy.com/media/oCXNel2GbZB7O/giphy.gif "do it!")
+
+
 ### Work with class. 
 
 Why?
@@ -94,6 +97,8 @@ a lot...
 No, seriously, has he said, about every 3.56 second, object oriented programming is the base of the video-game developpement, so, we will work with class.
 
 so, every part of this little workshop will be classy.
+
+!["classy"](https://media1.giphy.com/media/ch1Z4rUWBZBnO/giphy.gif "classy")
 
 ### Where and what 
 
@@ -173,7 +178,7 @@ you have all the key to do it by yourself.
 
 you can do it with the doc and self-esteem
 
-![do it!](https://images.genius.com/2b790e48bcd9779bce4dc5bc74a01118.563x1000x1.png "do it!")
+![do it!](https://media1.giphy.com/media/b7f0X8Okk1uyk/source.gif "do it!")
 
 
 Hint : you can get it with this => 
@@ -370,7 +375,7 @@ make the player to move.
 How? 
 simple, tie your monster into a table, elevate it at the top of the highest tour and wait for the thunder annnnnd => 
 
-![it's alive!](http://investwithanedge.com/wp-content/uploads/2019/10/102119-IMO-Image-v2.jpg "it's alive!")
+![it's alive!](https://media3.giphy.com/media/hhkflHMiOKqI/giphy.gif "it's alive!")
 
 no, seriously. 
 
@@ -467,7 +472,7 @@ turnRight() {
 
 everything is set to set the collide.
 
-![war!](http://m.quickmeme.com/img/ef/ef51fdc3c9500345b4b5ecc3a31c7fa6b2b319f9c09caabe6974be9492d8ddac.jpg "war!")
+![war!](https://media0.giphy.com/media/2BG086WOP2Xfi/giphy.gif "war!")
 
 <details>
  <summary>more details here</summary>
